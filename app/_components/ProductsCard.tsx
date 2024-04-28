@@ -11,7 +11,10 @@ function ProductsCard({ data }: { data: ProductDatum[] | undefined }) {
           {data?.map((item, index) => {
             return (
               index < 8 && (
-                <div className="flex flex-col justify-center items-center gap-5 p-2 md:p-6 border rounded-lg">
+                <div
+                  className="flex flex-col justify-center items-center gap-5 p-2 md:p-6 border rounded-lg"
+                  key={item.id}
+                >
                   <Image
                     src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${item.attributes.Image.data[0].attributes.formats.small.url}`}
                     alt={item.attributes.Image.data[0].attributes.name}
