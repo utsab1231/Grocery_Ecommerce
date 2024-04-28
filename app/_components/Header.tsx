@@ -12,6 +12,7 @@ import { LayoutGrid, Search, ShoppingBag } from "lucide-react";
 import Image from "next/image";
 import GlobalAPI, { DataValue } from "../_services/GlobalAPI";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 function Header() {
   const [item, setItem] = useState<DataValue[]>();
@@ -45,23 +46,25 @@ function Header() {
                 <ul className=" p-2">
                   {item?.map((data) => {
                     return (
-                      <DropdownMenuItem
-                        key={data.id}
-                        className="flex gap-2 items-center"
-                      >
-                        <Image
-                          src={
-                            process.env.NEXT_PUBLIC_BACKEND_URL +
-                            data?.attributes?.Icon?.data[0]?.attributes?.url
-                          }
-                          alt={
-                            data?.attributes?.Icon?.data[0]?.attributes
-                              ?.alternativeText || "category-image"
-                          }
-                          width={20}
-                          height={20}
-                        />
-                        {data?.attributes?.Category}
+                      <DropdownMenuItem key={data.id} className="">
+                        <Link
+                          href={`/products-category/${data.attributes.Category}`}
+                          className="flex gap-2 items-center"
+                        >
+                          <Image
+                            src={
+                              process.env.NEXT_PUBLIC_BACKEND_URL +
+                              data?.attributes?.Icon?.data[0]?.attributes?.url
+                            }
+                            alt={
+                              data?.attributes?.Icon?.data[0]?.attributes
+                                ?.alternativeText || "category-image"
+                            }
+                            width={20}
+                            height={20}
+                          />
+                          <span>{data?.attributes?.Category}</span>
+                        </Link>
                       </DropdownMenuItem>
                     );
                   })}

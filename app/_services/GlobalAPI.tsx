@@ -83,9 +83,18 @@ const getProductList = async () => {
   return response.data.data;
 };
 
+const getFilteredProducts = async (category: string) => {
+  const response: ProductResponseData = await axiosClient.get("/products", {
+    params: { populate: "*", "filters[Categories][Category][$eq]": category },
+  });
+
+  return response.data.data;
+};
+
 export default {
   getCategories,
   getSlidersList,
   getCategoriesList,
   getProductList,
+  getFilteredProducts,
 };

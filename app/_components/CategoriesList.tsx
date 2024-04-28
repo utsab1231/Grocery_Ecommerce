@@ -1,14 +1,24 @@
 import React from "react";
 import { DataValue } from "../_services/GlobalAPI";
 import Image from "next/image";
+import Link from "next/link";
 
-function CategoriesList({ data }: { data: DataValue[] | undefined }) {
+function CategoriesList({
+  data,
+  showTitle,
+}: {
+  data: DataValue[] | undefined;
+  showTitle?: boolean;
+}) {
   return (
     <div className="mt-6">
-      <h1 className="text-primary font-bold text-2xl">Shops by Category</h1>
+      {!showTitle && (
+        <h1 className="text-2xl font-bold text-primary">Shop by Categories</h1>
+      )}
       <div className="grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-8 cursor-pointer  ">
         {data?.map((item) => (
-          <div
+          <Link
+            href={`/products-category/${item.attributes.Category}`}
             key={item.id}
             className="flex flex-col items-center justify-center bg-green-50 p-4 mt-2 rounded-lg group hover:shadow-lg hover:bg-green-400"
           >
@@ -20,7 +30,7 @@ function CategoriesList({ data }: { data: DataValue[] | undefined }) {
               className="group-hover:scale-[1.2] transition-all duration-300 ease-in-out"
             />
             <p>{item.attributes.Category}</p>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
