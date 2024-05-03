@@ -34,6 +34,13 @@
 
       --radius: 0.5rem;
     }
+    
+    .input {
+      padding: 4px 6px;
+      border-radius: var(--radius);
+      outline: none;
+      
+    }
 
     .dark {
       --background: 156, 67%, 30%;

@@ -45,7 +45,7 @@ import {
 } from "../_types/api";
 import axios from "axios";
 const axiosClient = axios.create({
-  baseURL: "http://192.168.0.102:1337/api",
+  baseURL: "http://localhost:1337/api",
 });
 
 // if List is attached to the function it is for server side rendering
@@ -90,6 +90,8 @@ const getFilteredProducts = async (category: string) => {
 
   return response.data.data;
 };
+
+
 
 export default {
   getCategories,
